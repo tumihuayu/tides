@@ -1,0 +1,21 @@
+# 《潮汐商会》服务端镜像
+# 构建上下文必须是仓库根（docker-compose.yml 已配置 context: ..）：
+#   docker build -f deploy/Dockerfile.server -t tides-server .
+FROM erlang:24
+
+WORKDIR /app
+
+# 服务端源码 + 共享数值数据（tides_data 在 ../shared/data 查找配置）
+COPY server/ /app/server/
+COPY shared/data/ /app/shared/data/
+
+WORKDIR /app/server
+RUN erl -noshell -eval "make:all()" -s init stop
+
+# 战绩 dets 数据目录（docker-compose 挂载 named volume 到此处）
+RUN mkdir -p /app/server/data
+
+EXPOSE 9500
+
+# 端口/绑定地址由 /app/shared/data/config.json 的 port / bind_ip 决定（默认 0.0.0.0:9500）
+CMD ["erl", "-noshell", "-pa", "ebin", "-eval", "tides_app:start()."]

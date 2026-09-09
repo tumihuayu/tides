@@ -1,0 +1,34 @@
+[
+  {
+    "id": "east",
+    "name": "东鳞港",
+    "adj": [
+      "reef",
+      "white"
+    ]
+  },
+  {
+    "id": "reef",
+    "name": "碎星礁",
+    "adj": [
+      "east",
+      "fog"
+    ]
+  },
+  {
+    "id": "fog",
+    "name": "雾门",
+    "adj": [
+      "reef",
+      "white"
+    ]
+  },
+  {
+    "id": "white",
+    "name": "白汐城",
+    "adj": [
+      "fog",
+      "east"
+    ]
+  }
+]

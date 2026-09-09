@@ -1,0 +1,16 @@
+# 《潮汐商会》Caddy 替代方案（自动 TLS，无需 certbot 手动签发）
+# 使用：caddy run --config /path/to/Caddyfile
+# Caddy 自动为 tides.cn 申请/续期 Let's Encrypt 证书（需 80/443 可达）。
+# 注意：Caddy 默认反代即支持 WebSocket（自动透传 Upgrade 头），无需额外配置。
+
+tides.cn {
+	# WebSocket 与健康检查反代到 Erlang 服务端
+	# docker 场景把 127.0.0.1 换成 tides-server
+	reverse_proxy /ws 127.0.0.1:9500
+	reverse_proxy /healthz 127.0.0.1:9500
+
+	# 静态前端：指向 client/dist 部署目录
+	root * /var/www/tides
+	try_files {path} /index.html
+	file_server
+}

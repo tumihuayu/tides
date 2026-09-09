@@ -1,0 +1,194 @@
+[
+  {
+    "id": "CT01",
+    "name": "盐鳞小单",
+    "requires": [
+      {
+        "good": "salt",
+        "count": 1
+      }
+    ],
+    "port": "any",
+    "reward_vp": 3,
+    "reward_coins": 1,
+    "hidden": false
+  },
+  {
+    "id": "CT02",
+    "name": "灯油小单",
+    "requires": [
+      {
+        "good": "lamp",
+        "count": 1
+      }
+    ],
+    "port": "any",
+    "reward_vp": 3,
+    "reward_coins": 1,
+    "hidden": false
+  },
+  {
+    "id": "CT03",
+    "name": "丝贝小单",
+    "requires": [
+      {
+        "good": "silk",
+        "count": 1
+      }
+    ],
+    "port": "any",
+    "reward_vp": 4,
+    "reward_coins": 1,
+    "hidden": false
+  },
+  {
+    "id": "CT04",
+    "name": "盐鳞急单",
+    "requires": [
+      {
+        "good": "salt",
+        "count": 1
+      }
+    ],
+    "port": "any",
+    "reward_vp": 4,
+    "reward_coins": 0,
+    "hidden": false
+  },
+  {
+    "id": "CT05",
+    "name": "灯油急单",
+    "requires": [
+      {
+        "good": "lamp",
+        "count": 1
+      }
+    ],
+    "port": "any",
+    "reward_vp": 4,
+    "reward_coins": 0,
+    "hidden": false
+  },
+  {
+    "id": "CT06",
+    "name": "丝贝急单",
+    "requires": [
+      {
+        "good": "silk",
+        "count": 1
+      }
+    ],
+    "port": "any",
+    "reward_vp": 4,
+    "reward_coins": 2,
+    "hidden": false
+  },
+  {
+    "id": "CT07",
+    "name": "双货中单",
+    "requires": [
+      {
+        "good": "salt",
+        "count": 1
+      },
+      {
+        "good": "lamp",
+        "count": 1
+      }
+    ],
+    "port": "any",
+    "reward_vp": 5,
+    "reward_coins": 1,
+    "hidden": false
+  },
+  {
+    "id": "CT08",
+    "name": "灯丝中单",
+    "requires": [
+      {
+        "good": "lamp",
+        "count": 1
+      },
+      {
+        "good": "silk",
+        "count": 1
+      }
+    ],
+    "port": "any",
+    "reward_vp": 6,
+    "reward_coins": 0,
+    "hidden": true
+  },
+  {
+    "id": "CT09",
+    "name": "盐丝中单",
+    "requires": [
+      {
+        "good": "salt",
+        "count": 1
+      },
+      {
+        "good": "silk",
+        "count": 1
+      }
+    ],
+    "port": "any",
+    "reward_vp": 6,
+    "reward_coins": 0,
+    "hidden": true
+  },
+  {
+    "id": "CT10",
+    "name": "双盐大单",
+    "requires": [
+      {
+        "good": "salt",
+        "count": 2
+      }
+    ],
+    "port": "any",
+    "reward_vp": 5,
+    "reward_coins": 2,
+    "hidden": true
+  },
+  {
+    "id": "CT11",
+    "name": "三色大单",
+    "requires": [
+      {
+        "good": "salt",
+        "count": 1
+      },
+      {
+        "good": "lamp",
+        "count": 1
+      },
+      {
+        "good": "silk",
+        "count": 1
+      }
+    ],
+    "port": "any",
+    "reward_vp": 8,
+    "reward_coins": 2,
+    "hidden": true
+  },
+  {
+    "id": "CT12",
+    "name": "丝贝大单",
+    "requires": [
+      {
+        "good": "silk",
+        "count": 2
+      },
+      {
+        "good": "lamp",
+        "count": 1
+      }
+    ],
+    "port": "any",
+    "reward_vp": 8,
+    "reward_coins": 1,
+    "hidden": true
+  }
+]

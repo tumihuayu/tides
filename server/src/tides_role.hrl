@@ -1,0 +1,1 @@
+-record(role, {role_id, account_id, name = <<>>, created_at = 0}).

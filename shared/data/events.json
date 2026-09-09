@@ -1,0 +1,60 @@
+[
+  {
+    "id": "EV01",
+    "tide": "low",
+    "name": "暗礁",
+    "effect": {
+      "type": "lose_coin",
+      "count": 1
+    },
+    "text": "暗礁出没：每位船长失去1金币。"
+  },
+  {
+    "id": "EV02",
+    "tide": "low",
+    "name": "盐滩显露",
+    "effect": {
+      "type": "market_up",
+      "good": "salt"
+    },
+    "text": "盐滩显露：盐鳞价格+1。"
+  },
+  {
+    "id": "EV03",
+    "tide": "rising",
+    "name": "商队启程",
+    "effect": {
+      "type": "gain_coin",
+      "count": 1
+    },
+    "text": "商队启程：每位船长获得1金币。"
+  },
+  {
+    "id": "EV04",
+    "tide": "full",
+    "name": "商潮",
+    "effect": {
+      "type": "market_up_highest"
+    },
+    "text": "商潮涌动：当前最高价货物价格+1。"
+  },
+  {
+    "id": "EV05",
+    "tide": "full",
+    "name": "丝贝盛会",
+    "effect": {
+      "type": "market_up",
+      "good": "silk"
+    },
+    "text": "丝贝盛会：丝贝价格+1。"
+  },
+  {
+    "id": "EV06",
+    "tide": "ebb",
+    "name": "海雾",
+    "effect": {
+      "type": "none"
+    },
+    "text": "海雾弥漫：无事发生。"
+  }
+]

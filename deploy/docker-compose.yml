@@ -1,0 +1,44 @@
+version: "3.8"
+
+# 《潮汐商会》一键部署：Erlang 服务端 + nginx 反代
+# 前置：client/dist 已构建（npm run build），宿主机 /etc/letsencrypt 已有 tides.cn 证书。
+# docker 网络使用 nginx.docker.conf（proxy_pass 指向 tides-server:9500），
+# 宿主机直装仍用 nginx.conf（127.0.0.1:9500）。
+
+services:
+  tides-server:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile.server
+    image: tides-server:0.3.1
+    restart: unless-stopped
+    # 仅绑定本机回环，外网流量一律经 nginx 443 进入
+    ports:
+      - "127.0.0.1:9500:9500"
+    # 战绩 dets 持久化数据卷：/app/server/data/tides_stats.dets，容器重建不丢
+    volumes:
+      - tides-data:/app/server/data
+    healthcheck:
+      test: ["CMD", "erl", "-noshell", "-eval", "application:ensure_all_started(inets), case httpc:request(get, {\"http://127.0.0.1:9500/healthz\", []}, [{timeout, 3000}], []) of {ok, {{_, 200, _}, _, _}} -> init:stop(0); _ -> init:stop(1) end."]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  nginx:
+    image: nginx:alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ../client/dist:/usr/share/nginx/html:ro
+      - ./nginx.docker.conf:/etc/nginx/conf.d/default.conf:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+      - /var/www/certbot:/var/www/certbot:ro
+    depends_on:
+      tides-server:
+        condition: service_healthy
+
+volumes:
+  tides-data:

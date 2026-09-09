@@ -1,0 +1,41 @@
+{
+  "port": 9500,
+  "rounds": 4,
+  "turns_per_round": 3,
+  "hand_size": 5,
+  "start_coins": 3,
+  "public_contracts": 3,
+  "hidden_contracts_per_player": 1,
+  "select_timeout_ms": 45000,
+  "reconnect_grace_ms": 60000,
+  "min_players": 2,
+  "max_players": 4,
+  "market_start": {
+    "salt": 3,
+    "lamp": 3,
+    "silk": 4
+  },
+  "market_min": 1,
+  "market_max": 6,
+  "post_scores": [
+    4,
+    2,
+    1
+  ],
+  "cargo_score_max": 5,
+  "coin_score_rate": 3,
+  "coin_score_max": 4,
+  "home_port": "east",
+  "start_tide": "rising",
+  "draw_per_turn": 1,
+  "sail_base_cost": 1,
+  "sail_cost_min": 0,
+  "post_cost": 2,
+  "tide_order": [
+    "low",
+    "rising",
+    "full",
+    "ebb"
+  ],
+  "bind_ip": "0.0.0.0"
+}

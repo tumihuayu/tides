@@ -1,0 +1,10 @@
+{application, tides,
+ [{description, "Tides guild game server"},
+  {vsn, "0.3.2"},
+   {modules, [mysql, tides_app, tides_sup, tides_admin, tides_lobby, tides_room, tides_room_sup,
+                tides_ws_listener, tides_ws_conn, tides_game, tides_data, tides_mysql, tides_account,
+                tides_player, tides_player_sup, tides_player_registry,
+                tides_json, tides_stats, tides_sim, tides_server]},
+   {registered, [tides_sup, tides_lobby, tides_room_sup, tides_account, tides_player_sup, tides_player_registry]},
+   {applications, [kernel, stdlib, crypto, odbc]},
+  {mod, {tides_app, []}}]}.
