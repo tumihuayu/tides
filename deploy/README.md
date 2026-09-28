@@ -51,16 +51,23 @@ sudo systemctl reload caddy   # 自动申请/续期 tides.cn 证书
 
 ## 三、Docker（方案 B）
 ```sh
-# 前置：docker + docker compose 插件；client/dist 已构建；
-# 宿主机已用 certbot 签好证书（certbot certonly --standalone -d tides.cn）。
+# 前置：Docker Engine 及 Docker Compose 插件。
 cd tides
-# docker 网络内 nginx 访问服务端走服务名：compose 已自动挂载 deploy/nginx.docker.conf
-# （proxy_pass 指向 tides-server:9500），无需手工改配置。
+# 生产部署建议先复制 deploy/.env.example 为 deploy/.env 并修改密码。
 docker compose -f deploy/docker-compose.yml up -d --build
-curl http://127.0.0.1:9500/healthz
 ```
-战绩持久化：compose 已挂 named volume `tides-data` 到 `/app/server/data`（dets 文件），
-容器重建/升级不丢战绩；删除该卷（`docker compose down -v`）将清空全服战绩，慎操作。
+
+首次启动会自动创建 MariaDB 数据库和账号表。访问：
+
+```sh
+curl http://127.0.0.1:9500/healthz
+# 浏览器打开 http://127.0.0.1:8080
+```
+
+`tides-data` 保存服务端 DETS 战绩，`tides-db` 保存账号数据。停止服务使用
+`docker compose -f deploy/docker-compose.yml down`；`down -v` 会同时删除数据库和战绩卷。
+生产环境请将 Compose 的默认数据库密码改为通过 `.env` 注入，并在前面增加 TLS 反向代理；
+`nginx.docker.conf` 仍可用于已有证书的生产部署。
 
 ## 四、验证清单
 1. `curl http://127.0.0.1:9500/healthz` → `200 {"ok":true,"service":"tides","version":...}`，version 应与 `tides_server:version()` 当前值一致

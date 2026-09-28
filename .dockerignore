@@ -1,0 +1,15 @@
+.git
+.gitignore
+.opencode
+
+client/node_modules
+client/dist
+server/ebin
+server/data
+server/erl_crash.dump
+server/*.log
+server/*.pid
+
+config/database.env
+tests
+docs

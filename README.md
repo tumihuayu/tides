@@ -38,6 +38,20 @@ mysql --version       # 仅使用数据库功能时检查
 
 ## 3. 五分钟本地启动
 
+### Docker 一键启动
+
+安装 Docker Desktop 或 Docker Engine 后，在仓库根目录执行：
+
+```sh
+# 生产部署前：复制 deploy/.env.example 为 deploy/.env，并修改数据库密码
+docker compose -f deploy/docker-compose.yml up -d --build
+```
+
+浏览器打开 <http://localhost:8080>。服务端健康检查地址为
+<http://localhost:9500/healthz>；Compose 会自动启动 MariaDB 并初始化账号表。
+停止服务执行 `docker compose -f deploy/docker-compose.yml down`。不要随意使用
+`down -v`，该命令会删除账号和战绩数据卷。
+
 ### Windows
 
 在仓库根目录执行：

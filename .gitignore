@@ -1,2 +1,3 @@
 # Local database credentials
 config/database.env
+deploy/.env

@@ -51,6 +51,9 @@ export interface ResolvedWsUrl {
 function inferWsUrl(): string {
   if (location.protocol === 'https:') return `wss://${location.host}/ws`;
   const host = location.hostname;
+  if (location.port && location.port !== '5173' && location.port !== '4173') {
+    return `ws://${location.host}/ws`;
+  }
   if (host === 'localhost' || host === '127.0.0.1') return 'ws://localhost:9500/ws';
   return `ws://${host}:9500/ws`;
 }

@@ -3,6 +3,12 @@
 #   docker build -f deploy/Dockerfile.server -t tides-server .
 FROM erlang:24
 
+# The project uses Erlang's ODBC API. MariaDB's ODBC driver is compatible
+# with the MySQL schema and is available in the Debian base image.
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends unixodbc odbc-mariadb \
+    && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app
 
 # 服务端源码 + 共享数值数据（tides_data 在 ../shared/data 查找配置）
@@ -12,7 +18,6 @@ COPY shared/data/ /app/shared/data/
 WORKDIR /app/server
 RUN erl -noshell -eval "make:all()" -s init stop
 
-# 战绩 dets 数据目录（docker-compose 挂载 named volume 到此处）
 RUN mkdir -p /app/server/data
 
 EXPOSE 9500
