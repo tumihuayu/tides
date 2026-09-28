@@ -10,7 +10,10 @@ start_link(Options) ->
     User = value(user, Options, "root"),
     Password = value(password, Options, ""),
     Database = value(database, Options, "tides"),
-    Driver = "MySQL ODBC 5.3 Unicode Driver",
+    Driver = case os:getenv("MYSQL_ODBC_DRIVER") of
+                 false -> "MySQL ODBC 5.3 Unicode Driver";
+                 Value -> Value
+             end,
     Connection = lists:flatten(io_lib:format(
         "Driver={~s};SERVER=~s;PORT=~s;UID=~s;PWD=~s;DATABASE=~s;",
         [Driver, Host, Port, User, Password, Database])),
